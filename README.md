@@ -1,4 +1,4 @@
-# Safeguarding PHI in the AI Era: Local SOAP Note Generation with OpenAI Whisper, NLP/NER, and LLMs
+# Safeguarding PHI in the AI Era: SOAP Notes Generation with OpenAI Whisper, NLP/NER, and LLMs locally
 
 ## Description
 Transcribe medical audio locally using OpenAI Whisper, redact PHI from transcript text using NLP/NER, and generate a structured SOAP note (`Subjective`, `Objective`, `Assessment`, `Plan`) using a local LLM.
