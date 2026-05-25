@@ -1,0 +1,10 @@
+{
+  "audio_file": "data/audio.mp3",
+  "transcript": "Good morning, can you please confirm your details? My name is [REDACTED], [REDACTED], [REDACTED] is [REDACTED], and my social security number is [REDACTED]. I have been having this weird stomach pain since past 3 days. I have stand near concern, based on our symptoms and examination. This appears to be a acute gastritis. I will prescribe pantoprasol, which is a proton pump inhibitor, along with antacids to reduce the acid in your stomach. Is there anything else I should do? Yes, take properest, avoid spicy oily foods, and make sure you drink plenty of fluids. If symptoms persist, come back for a follow-up after a week.",
+  "soap_note": {
+    "Subjective": "Patient reports experiencing stomach pain since past 3 days; concern about acute gastritis",
+    "Objective": "Physical examination and medical history not detailed in transcript",
+    "Assessment": "Acute gastritis",
+    "Plan": "Prescribe pantoprazole (proton pump inhibitor) and antacids, instruct patient to take proper diet, avoid spicy oily foods, and drink plenty of fluids; follow-up in one week if symptoms persist"
+  }
+}
