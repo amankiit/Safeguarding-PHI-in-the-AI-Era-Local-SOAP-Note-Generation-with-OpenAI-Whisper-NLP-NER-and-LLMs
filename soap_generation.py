@@ -1,20 +1,10 @@
 import json
 import re
-from pathlib import Path
 from typing import Dict
 
 from ollama import generate
 
-from config import SYSTEM_PROMPT
-
-
-def load_prompt_template(prompt_file: Path) -> str:
-    if not prompt_file.exists():
-        raise RuntimeError(f"Prompt file not found: {prompt_file}")
-    content = prompt_file.read_text(encoding="utf-8").strip()
-    if "{transcript}" not in content:
-        raise RuntimeError("Prompt file must include '{transcript}' placeholder.")
-    return content
+from config import SOAP_POLISH_PROMPT_TEMPLATE, SYSTEM_PROMPT
 
 
 def call_ollama(transcript: str, model: str, prompt_template: str) -> str:
@@ -61,12 +51,8 @@ def parse_soap_json(raw_text: str) -> dict:
 
 
 def polish_soap_note(soap_note: Dict[str, str], model: str) -> Dict[str, str]:
-    prompt = (
-        "You are editing a SOAP note for spelling and grammar only.\n"
-        "Do not add or remove clinical facts.\n"
-        "Preserve placeholders like [REDACTED_NAME] exactly.\n"
-        "Return valid JSON only with keys Subjective, Objective, Assessment, Plan.\n\n"
-        f"SOAP JSON:\n{json.dumps(soap_note, ensure_ascii=False)}"
+    prompt = SOAP_POLISH_PROMPT_TEMPLATE.format(
+        soap_json=json.dumps(soap_note, ensure_ascii=False)
     )
     try:
         response = generate(model=model, prompt=prompt, format="json")

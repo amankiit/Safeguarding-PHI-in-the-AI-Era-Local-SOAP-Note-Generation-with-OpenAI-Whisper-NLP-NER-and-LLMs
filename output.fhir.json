@@ -1,0 +1,66 @@
+{
+  "resourceType": "Bundle",
+  "type": "document",
+  "timestamp": "2026-05-25T14:51:47Z",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:soap-composition",
+      "resource": {
+        "resourceType": "Composition",
+        "id": "soap-composition",
+        "status": "final",
+        "type": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "34133-9",
+              "display": "Summarization of episode note"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/example-patient"
+        },
+        "date": "2026-05-25T14:51:47Z",
+        "title": "SOAP Clinical Note for audio.mp3",
+        "section": [
+          {
+            "title": "Subjective",
+            "text": {
+              "status": "generated",
+              "div": "<div xmlns='http://www.w3.org/1999/xhtml'><p>Patient reports experiencing weird stomach pain since past 3 days.</p></div>"
+            }
+          },
+          {
+            "title": "Objective",
+            "text": {
+              "status": "generated",
+              "div": "<div xmlns='http://www.w3.org/1999/xhtml'><p>No specific objective findings mentioned in the transcript.</p></div>"
+            }
+          },
+          {
+            "title": "Assessment",
+            "text": {
+              "status": "generated",
+              "div": "<div xmlns='http://www.w3.org/1999/xhtml'><p>Acute gastritis</p></div>"
+            }
+          },
+          {
+            "title": "Plan",
+            "text": {
+              "status": "generated",
+              "div": "<div xmlns='http://www.w3.org/1999/xhtml'><p>Prescription of pantoprazole and antacids, instructing patient to take proper care, avoid spicy oily foods, drink plenty of fluids; follow-up appointment in a week if symptoms persist</p></div>"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:example-patient",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "example-patient"
+      }
+    }
+  ]
+}

@@ -124,9 +124,27 @@ python3 main.py data/audio1.m4a --no-redact-phi
 python3 main.py data/audio1.m4a --print-transcript
 ```
 
+## Prompt Configuration
+
+All prompts are now configured in `config.py`:
+
+- `SYSTEM_PROMPT`:
+  global guardrails for the main SOAP generation call (JSON-only, exact keys, no extra text).
+- `SOAP_PROMPT_TEMPLATE`:
+  primary task prompt used to convert transcript text into SOAP JSON.
+- `SOAP_POLISH_PROMPT_TEMPLATE`:
+  second-pass refinement prompt used to polish grammar/spelling without changing clinical meaning.
+
+Use cases:
+- Edit `SOAP_PROMPT_TEMPLATE` when you want to change SOAP writing style/content behavior.
+- Edit `SOAP_POLISH_PROMPT_TEMPLATE` when you want to tighten or relax post-processing cleanup.
+- Keep `SYSTEM_PROMPT` short and strict for output-format safety.
+
 ## Output
 
-The script writes `output.json` with:
+The script writes two files:
+
+1. `output.json` (core application output)
 - `audio_file`
 - `transcript` (redacted unless disabled)
 - `soap_note` with keys:
@@ -135,6 +153,13 @@ The script writes `output.json` with:
   - `Assessment`
   - `Plan`
 
+2. `output.fhir.json` (HL7 FHIR R4-style document bundle)
+- `resourceType`: `Bundle`
+- `type`: `document`
+- `entry` contains:
+  - `Composition` with SOAP sections
+  - `Patient` placeholder resource
+
 ## Notes
 
 - If spaCy model is missing, PHI redaction quality may degrade.
@@ -142,8 +167,8 @@ The script writes `output.json` with:
 - Keep local models updated for best SOAP generation quality.
 
 ## Output Format
-The output gets stored in output.json file.
-The script writes JSON like this:
+
+### output.json
 
 ```json
 {
@@ -155,5 +180,51 @@ The script writes JSON like this:
     "Assessment": "...",
     "Plan": "..."
   }
+}
+```
+
+### output.fhir.json
+
+```json
+{
+  "resourceType": "Bundle",
+  "type": "document",
+  "timestamp": "2026-05-25T12:00:00Z",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:soap-composition",
+      "resource": {
+        "resourceType": "Composition",
+        "id": "soap-composition",
+        "status": "final",
+        "type": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "34133-9",
+              "display": "Summarization of episode note"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/example-patient"
+        },
+        "title": "SOAP Clinical Note for audio.mp3",
+        "section": [
+          { "title": "Subjective", "text": { "status": "generated", "div": "<div xmlns='http://www.w3.org/1999/xhtml'><p>...</p></div>" } },
+          { "title": "Objective", "text": { "status": "generated", "div": "<div xmlns='http://www.w3.org/1999/xhtml'><p>...</p></div>" } },
+          { "title": "Assessment", "text": { "status": "generated", "div": "<div xmlns='http://www.w3.org/1999/xhtml'><p>...</p></div>" } },
+          { "title": "Plan", "text": { "status": "generated", "div": "<div xmlns='http://www.w3.org/1999/xhtml'><p>...</p></div>" } }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:example-patient",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "example-patient"
+      }
+    }
+  ]
 }
 ```
