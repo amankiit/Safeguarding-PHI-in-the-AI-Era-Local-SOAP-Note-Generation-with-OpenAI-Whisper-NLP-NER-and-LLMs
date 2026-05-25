@@ -9,12 +9,12 @@ Supported audio files : mp3, m4a, etc.
 
 ```mermaid
 flowchart TD
-    A[Input Audio File] --> B[Audio to text transcription<br/>OpenAI Whisper]
-    B --> C[Clean transcript text]
-    C --> D[Redact PHI data (Regex + NLP/NER using spaCy)]
-    D --> E[Generate SOAP note (LLM call via Ollama)]
-    E --> F[Parse and polish JSON (Python json + LLM)]
-    F --> G[Save final output (Python file I/O)]
+    A["Input Audio File"] --> B["Audio to text transcription<br/>OpenAI Whisper"]
+    B --> C["Clean transcript text"]
+    C --> D["Redact PHI data<br/>Regex + NLP and NER using spaCy"]
+    D --> E["Generate SOAP note<br/>LLM call via Ollama"]
+    E --> F["Parse and polish JSON<br/>Python json + LLM"]
+    F --> G["Save final output<br/>Python file I/O"]
 ```
 
 ## Tech Stack
