@@ -1,19 +1,18 @@
-# AI-powered SOAP Notes Transcription
+# Safeguarding PHI in the AI Era: Local SOAP Note Generation with OpenAI Whisper, NLP/NER, and LLMs
 
 ## Description
 Transcribe medical audio locally using OpenAI Whisper, redact PHI from transcript text using NLP/NER, and generate a structured SOAP note (`Subjective`, `Objective`, `Assessment`, `Plan`) using a local LLM.
 
-Supported audio files : mp3, m4a, etc.
 
 ## Flowchart
 
 ```mermaid
 flowchart TD
-    A["Input Audio File"] --> B["Audio to text transcription<br/>OpenAI Whisper"]
-    B --> C["Clean transcript text"]
-    C --> D["Redact PHI data<br/>Regex + NLP and NER using spaCy"]
-    D --> E["Generate SOAP note<br/>LLM call via Ollama"]
-    E --> F["Parse and polish JSON<br/>Python json + LLM"]
+    A["Input Audio File"] --> B["Audio to text transcription<br/>using OpenAI Whisper"]
+    B --> C["Clean transcripted text"]
+    C --> D["Redact PHI data<br/>using Regex + NLP/NER using spaCy"]
+    D --> E["Generate SOAP notes<br/>via LLM call locally"]
+    E --> F["Parse and polish JSON<br/>using Python json + LLM"]
     F --> G["Save final output<br/>Python file I/O"]
 ```
 
@@ -34,7 +33,11 @@ From `requirements.txt`:
 - `requests>=2.31.0`
 - `spacy>=3.7.0`
 
-System tools:
+## Sample audio files
+Supported audio files : mp3, m4a, etc.
+Two audio files dataset named audio.mp3 and audio1.mp3 are provided in data directory.
+
+## System tools:
 - `ffmpeg`
 - `ollama` CLI/runtime
 
