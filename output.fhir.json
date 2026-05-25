@@ -1,13 +1,13 @@
 {
   "resourceType": "Bundle",
   "type": "document",
-  "timestamp": "2026-05-25T14:51:47Z",
+  "timestamp": "2026-05-25T14:58:30Z",
   "entry": [
     {
-      "fullUrl": "urn:uuid:soap-composition",
+      "fullUrl": "urn:uuid:c62becff-f373-469f-b783-9362dfca7436",
       "resource": {
         "resourceType": "Composition",
-        "id": "soap-composition",
+        "id": "c62becff-f373-469f-b783-9362dfca7436",
         "status": "final",
         "type": {
           "coding": [
@@ -21,21 +21,21 @@
         "subject": {
           "reference": "Patient/example-patient"
         },
-        "date": "2026-05-25T14:51:47Z",
+        "date": "2026-05-25T14:58:30Z",
         "title": "SOAP Clinical Note for audio.mp3",
         "section": [
           {
             "title": "Subjective",
             "text": {
               "status": "generated",
-              "div": "<div xmlns='http://www.w3.org/1999/xhtml'><p>Patient reports experiencing weird stomach pain since past 3 days.</p></div>"
+              "div": "<div xmlns='http://www.w3.org/1999/xhtml'><p>Patient reports experiencing acute stomach pain for past 3 days</p></div>"
             }
           },
           {
             "title": "Objective",
             "text": {
               "status": "generated",
-              "div": "<div xmlns='http://www.w3.org/1999/xhtml'><p>No specific objective findings mentioned in the transcript.</p></div>"
+              "div": "<div xmlns='http://www.w3.org/1999/xhtml'><p>No specific exam findings or measurements reported</p></div>"
             }
           },
           {
@@ -49,14 +49,14 @@
             "title": "Plan",
             "text": {
               "status": "generated",
-              "div": "<div xmlns='http://www.w3.org/1999/xhtml'><p>Prescription of pantoprazole and antacids, instructing patient to take proper care, avoid spicy oily foods, drink plenty of fluids; follow-up appointment in a week if symptoms persist</p></div>"
+              "div": "<div xmlns='http://www.w3.org/1999/xhtml'><p>Prescribe pantoprazole and antacids, instruct patient to take proper diet, avoid spicy oily foods, drink plenty of fluids; follow-up in a week if symptoms persist</p></div>"
             }
           }
         ]
       }
     },
     {
-      "fullUrl": "urn:uuid:example-patient",
+      "fullUrl": "urn:uuid:f46a9059-abce-44c0-bf74-c9684e8fb927",
       "resource": {
         "resourceType": "Patient",
         "id": "example-patient"

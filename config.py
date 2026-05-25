@@ -1,3 +1,6 @@
+SOAP_KEYS = ("Subjective", "Objective", "Assessment", "Plan")
+REDACTION_TOKEN = "[REDACTED]"
+
 SYSTEM_PROMPT = (
     "You are a clinical documentation assistant. "
     "Return valid JSON only with exactly these top-level keys: Subjective, Objective, Assessment, Plan. "
@@ -21,7 +24,7 @@ Transcript:
 
 SOAP_POLISH_PROMPT_TEMPLATE = """You are editing a SOAP note for spelling and grammar only.
 Do not add or remove clinical facts.
-Preserve placeholders like [REDACTED_NAME] exactly.
+Preserve placeholders like [REDACTED] exactly.
 Return valid JSON only with keys Subjective, Objective, Assessment, Plan.
 
 SOAP JSON:

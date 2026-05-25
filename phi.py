@@ -1,5 +1,6 @@
 import re
 from typing import List, Tuple
+from config import REDACTION_TOKEN
 
 try:
     import spacy
@@ -94,7 +95,7 @@ def _redact_spans(text: str, spans: List[LabelSpan]) -> str:
     cursor = 0
     for start, end in merged:
         out.append(text[cursor:start])
-        out.append("[REDACTED]")
+        out.append(REDACTION_TOKEN)
         cursor = end
     out.append(text[cursor:])
     return "".join(out)
@@ -104,5 +105,5 @@ def redact_phi(text: str) -> str:
     # Lightweight NER first (names/locations/dates), regex second for IDs/contact fields.
     redacted = _redact_spans(text, _ner_spans(text))
     for pattern in PHI_PATTERNS:
-        redacted = pattern.sub("[REDACTED]", redacted)
+        redacted = pattern.sub(REDACTION_TOKEN, redacted)
     return redacted
